@@ -38,16 +38,29 @@ static BOOL isAppInstalled(CFStringRef appName, LSSharedFileListRef list, LSShar
         CFStringRef displayName = LSSharedFileListItemCopyDisplayName(listItem);
         if (displayName != NULL) {
             if (CFStringCompare(displayName, appName, kCFCompareCaseInsensitive) == kCFCompareEqualTo) {
-                ret = YES;
-                if (outItem != NULL) {
-                    *outItem = listItem;
-                    CFRetain(*outItem);
+                // We have a match based on name. If the existing login item's file is missing, remove it.
+                CFURLRef itemURL = NULL;
+                OSStatus status = LSSharedFileListItemResolve(listItem, kLSSharedFileListNoUserInteraction, &itemURL, NULL);
+                if (itemURL != NULL) {
+                    // Even though we don't use the URL, apparently LSSharedFileListItemResolve() requires it or the
+                    // FSRef in order to return the appropriate status (-43). Otherwise it seems to always just return 0.
+                    CFRelease(itemURL);
+                }
+                if (status == fnfErr) {
+                    // Login item no longer exists, so remove it.
+                    (void)LSSharedFileListItemRemove(list, listItem);
+                } else if (status == noErr) {
+                    ret = YES;
+                    if (outItem != NULL) {
+                        *outItem = listItem;
+                        CFRetain(*outItem);
+                    }
                 }
             }
             CFRelease(displayName);
-            if (ret) {
-                break;
-            }
+        }
+        if (ret) {
+            break;
         }
     }
     CFRelease(loginItems);
@@ -77,7 +90,7 @@ static BOOL isAppInstalled(CFStringRef appName, LSSharedFileListRef list, LSShar
         CFStringRef appName = (CFStringRef)[[NSProcessInfo processInfo] processName];
         LSSharedFileListItemRef item = NULL;
         if ((isAppInstalled(appName, list, &item) == YES) && (item != NULL)) {
-            LSSharedFileListItemRemove(list, item);
+            (void)LSSharedFileListItemRemove(list, item);
             CFRelease(item);
         }
         CFRelease(list);
