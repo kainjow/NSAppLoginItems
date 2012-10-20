@@ -97,4 +97,16 @@ static BOOL isAppInstalled(CFStringRef appName, LSSharedFileListRef list, LSShar
     }
 }
 
+- (BOOL)isInLoginItems
+{
+    BOOL ret = NO;
+    LSSharedFileListRef list = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+    if (list != NULL) {
+        CFStringRef appName = (CFStringRef)[[NSProcessInfo processInfo] processName];
+        ret = isAppInstalled(appName, list, NULL);
+        CFRelease(list);
+    }
+    return ret;
+}
+
 @end

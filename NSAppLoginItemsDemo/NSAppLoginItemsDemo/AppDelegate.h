@@ -10,6 +10,8 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
+@property (assign) IBOutlet NSButton *checkbox;
+
 - (IBAction)add:(id)sender;
 - (IBAction)remove:(id)sender;
 

@@ -11,14 +11,26 @@
 
 @implementation AppDelegate
 
+- (void)updateCheckbox
+{
+    [self.checkbox setState:[NSApp isInLoginItems] ? NSOnState : NSOffState];
+}
+
+- (void)awakeFromNib
+{
+    [self updateCheckbox];
+}
+
 - (IBAction)add:(id)sender
 {
     [NSApp addToLoginItems];
+    [self updateCheckbox];
 }
 
 - (IBAction)remove:(id)sender
 {
     [NSApp removeFromLoginItems];
+    [self updateCheckbox];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
