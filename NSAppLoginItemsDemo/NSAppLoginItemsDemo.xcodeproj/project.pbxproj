@@ -1,0 +1,268 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A56633EA1633339B00E4C57F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A56633E91633339B00E4C57F /* Cocoa.framework */; };
+		A56633F61633339B00E4C57F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A56633F51633339B00E4C57F /* main.m */; };
+		A56633FD1633339B00E4C57F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A56633FC1633339B00E4C57F /* AppDelegate.m */; };
+		A56634001633339B00E4C57F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A56633FE1633339B00E4C57F /* MainMenu.xib */; };
+		A56634081633346100E4C57F /* NSApplication+LoginItems.m in Sources */ = {isa = PBXBuildFile; fileRef = A56634061633346100E4C57F /* NSApplication+LoginItems.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A56633E51633339B00E4C57F /* NSAppLoginItemsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSAppLoginItemsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A56633E91633339B00E4C57F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		A56633F11633339B00E4C57F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A56633F51633339B00E4C57F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A56633FB1633339B00E4C57F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A56633FC1633339B00E4C57F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A56633FF1633339B00E4C57F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		A56634061633346100E4C57F /* NSApplication+LoginItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSApplication+LoginItems.m"; path = "../../NSApplication+LoginItems.m"; sourceTree = "<group>"; };
+		A56634071633346100E4C57F /* NSApplication+LoginItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSApplication+LoginItems.h"; path = "../../NSApplication+LoginItems.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A56633E21633339B00E4C57F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A56633EA1633339B00E4C57F /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A56633DA1633339B00E4C57F = {
+			isa = PBXGroup;
+			children = (
+				A56633EF1633339B00E4C57F /* NSAppLoginItemsDemo */,
+				A56633E81633339B00E4C57F /* Frameworks */,
+				A56633E61633339B00E4C57F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A56633E61633339B00E4C57F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A56633E51633339B00E4C57F /* NSAppLoginItemsDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A56633E81633339B00E4C57F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A56633E91633339B00E4C57F /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A56633EF1633339B00E4C57F /* NSAppLoginItemsDemo */ = {
+			isa = PBXGroup;
+			children = (
+				A56633FB1633339B00E4C57F /* AppDelegate.h */,
+				A56633FC1633339B00E4C57F /* AppDelegate.m */,
+				A56634071633346100E4C57F /* NSApplication+LoginItems.h */,
+				A56634061633346100E4C57F /* NSApplication+LoginItems.m */,
+				A56633FE1633339B00E4C57F /* MainMenu.xib */,
+				A56633F01633339B00E4C57F /* Supporting Files */,
+			);
+			path = NSAppLoginItemsDemo;
+			sourceTree = "<group>";
+		};
+		A56633F01633339B00E4C57F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A56633F11633339B00E4C57F /* Info.plist */,
+				A56633F51633339B00E4C57F /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A56633E41633339B00E4C57F /* NSAppLoginItemsDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A56634031633339B00E4C57F /* Build configuration list for PBXNativeTarget "NSAppLoginItemsDemo" */;
+			buildPhases = (
+				A56633E11633339B00E4C57F /* Sources */,
+				A56633E21633339B00E4C57F /* Frameworks */,
+				A56633E31633339B00E4C57F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NSAppLoginItemsDemo;
+			productName = NSAppLoginItemsDemo;
+			productReference = A56633E51633339B00E4C57F /* NSAppLoginItemsDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A56633DC1633339B00E4C57F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Kevin Wojniak";
+			};
+			buildConfigurationList = A56633DF1633339B00E4C57F /* Build configuration list for PBXProject "NSAppLoginItemsDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A56633DA1633339B00E4C57F;
+			productRefGroup = A56633E61633339B00E4C57F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A56633E41633339B00E4C57F /* NSAppLoginItemsDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A56633E31633339B00E4C57F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A56634001633339B00E4C57F /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A56633E11633339B00E4C57F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A56633F61633339B00E4C57F /* main.m in Sources */,
+				A56633FD1633339B00E4C57F /* AppDelegate.m in Sources */,
+				A56634081633346100E4C57F /* NSApplication+LoginItems.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A56633FE1633339B00E4C57F /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A56633FF1633339B00E4C57F /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A56634011633339B00E4C57F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A56634021633339B00E4C57F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		A56634041633339B00E4C57F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				INFOPLIST_FILE = NSAppLoginItemsDemo/Info.plist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "-Wall";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A56634051633339B00E4C57F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				INFOPLIST_FILE = NSAppLoginItemsDemo/Info.plist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "-Wall";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A56633DF1633339B00E4C57F /* Build configuration list for PBXProject "NSAppLoginItemsDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A56634011633339B00E4C57F /* Debug */,
+				A56634021633339B00E4C57F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A56634031633339B00E4C57F /* Build configuration list for PBXNativeTarget "NSAppLoginItemsDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A56634041633339B00E4C57F /* Debug */,
+				A56634051633339B00E4C57F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A56633DC1633339B00E4C57F /* Project object */;
+}
