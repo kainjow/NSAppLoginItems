@@ -26,75 +26,62 @@
 
 @implementation NSApplication (KainjowLoginItems)
 
-- (BOOL)isAppInstalled:(CFStringRef)appName inList:(LSSharedFileListRef)list item:(LSSharedFileListItemRef *)item
+static BOOL isAppInstalled(CFStringRef appName, LSSharedFileListRef list, LSSharedFileListItemRef *outItem)
 {
-	CFArrayRef loginItems = LSSharedFileListCopySnapshot(list, NULL);
-	if (!loginItems)
-		return NO;
-	
-	BOOL ret = NO;
-	for (CFIndex i=0; i<CFArrayGetCount(loginItems); i++)
-	{
-		LSSharedFileListItemRef listItem = (LSSharedFileListItemRef)CFArrayGetValueAtIndex(loginItems, i);
-		CFStringRef displayName = LSSharedFileListItemCopyDisplayName(listItem);
-		if (displayName)
-		{
-			if (CFStringCompare(displayName, appName, kCFCompareCaseInsensitive) == kCFCompareEqualTo)
-			{
-				ret = YES;
-				if (item)
-				{
-					*item = listItem;
-					CFRetain(*item);
-				}
-			}
-			
-			CFRelease(displayName);
-			
-			if (ret)
-				break;
-		}
-	}
-	
-	CFRelease(loginItems);
-	
-	return ret;
+    CFArrayRef loginItems = LSSharedFileListCopySnapshot(list, NULL);
+    if (loginItems == NULL) {
+        return NO;
+    }
+    BOOL ret = NO;
+    for (CFIndex i=0; i<CFArrayGetCount(loginItems); i++) {
+        LSSharedFileListItemRef listItem = (LSSharedFileListItemRef)CFArrayGetValueAtIndex(loginItems, i);
+        CFStringRef displayName = LSSharedFileListItemCopyDisplayName(listItem);
+        if (displayName != NULL) {
+            if (CFStringCompare(displayName, appName, kCFCompareCaseInsensitive) == kCFCompareEqualTo) {
+                ret = YES;
+                if (outItem != NULL) {
+                    *outItem = listItem;
+                    CFRetain(*outItem);
+                }
+            }
+            CFRelease(displayName);
+            if (ret) {
+                break;
+            }
+        }
+    }
+    CFRelease(loginItems);
+    return ret;
 }
 
 - (void)addToLoginItems
 {
-	LSSharedFileListRef list = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-	if (!list)
-		return;
-	
-	CFStringRef appName = (CFStringRef)[[NSProcessInfo processInfo] processName];
-
-	if (![self isAppInstalled:appName inList:list item:NULL])
-	{
-		CFURLRef url = (CFURLRef)[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
-		LSSharedFileListItemRef newItem = LSSharedFileListInsertItemURL(list, kLSSharedFileListItemLast, NULL, NULL, url, NULL, NULL);
-		if (newItem)
-			CFRelease(newItem);
-	}
-	
-	CFRelease(list);
+    LSSharedFileListRef list = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+    if (list != NULL) {
+        CFStringRef appName = (CFStringRef)[[NSProcessInfo processInfo] processName];
+        if (isAppInstalled(appName, list, NULL) == NO) {
+            CFURLRef url = (CFURLRef)[[NSBundle mainBundle] bundleURL];
+            LSSharedFileListItemRef newItem = LSSharedFileListInsertItemURL(list, kLSSharedFileListItemLast, NULL, NULL, url, NULL, NULL);
+            if (newItem != NULL) {
+                CFRelease(newItem);
+            }
+        }
+        CFRelease(list);
+    }
 }
 
 - (void)removeFromLoginItems
 {
-	LSSharedFileListRef list = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-	if (!list)
-		return;
-	
-	CFStringRef appName = (CFStringRef)[[NSProcessInfo processInfo] processName];
-	LSSharedFileListItemRef item = NULL;
-	if ([self isAppInstalled:appName inList:list item:&item] && item)
-	{
-		LSSharedFileListItemRemove(list, item);
-		CFRelease(item);
-	}
-	
-	CFRelease(list);
+    LSSharedFileListRef list = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+    if (list != NULL) {
+        CFStringRef appName = (CFStringRef)[[NSProcessInfo processInfo] processName];
+        LSSharedFileListItemRef item = NULL;
+        if ((isAppInstalled(appName, list, &item) == YES) && (item != NULL)) {
+            LSSharedFileListItemRemove(list, item);
+            CFRelease(item);
+        }
+        CFRelease(list);
+    }
 }
 
 @end
