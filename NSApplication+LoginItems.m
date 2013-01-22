@@ -74,7 +74,7 @@ static BOOL isAppInstalled(CFStringRef appName, LSSharedFileListRef list, LSShar
         CFStringRef appName = (CFStringRef)[[NSProcessInfo processInfo] processName];
         if (isAppInstalled(appName, list, NULL) == NO) {
             CFURLRef url = (CFURLRef)[[NSBundle mainBundle] bundleURL];
-            LSSharedFileListItemRef newItem = LSSharedFileListInsertItemURL(list, kLSSharedFileListItemLast, NULL, NULL, url, NULL, NULL);
+            LSSharedFileListItemRef newItem = LSSharedFileListInsertItemURL(list, kLSSharedFileListItemLast, appName, NULL, url, NULL, NULL);
             if (newItem != NULL) {
                 CFRelease(newItem);
             }
