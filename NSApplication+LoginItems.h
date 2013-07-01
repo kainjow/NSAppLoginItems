@@ -2,7 +2,7 @@
 // NSApplication+LoginItems.h
 // Created by Kevin Wojniak on 9/2/09.
 //
-// Copyright (c) 2009-2012 Kevin Wojniak
+// Copyright (c) 2009-2013 Kevin Wojniak
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this
 // software and associated documentation files (the "Software"), to deal in the Software

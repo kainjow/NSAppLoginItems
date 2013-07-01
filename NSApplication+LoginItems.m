@@ -2,7 +2,7 @@
 // NSApplication+LoginItems.m
 // Created by Kevin Wojniak on 9/2/09.
 //
-// Copyright (c) 2009-2012 Kevin Wojniak
+// Copyright (c) 2009-2013 Kevin Wojniak
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this
 // software and associated documentation files (the "Software"), to deal in the Software
@@ -23,8 +23,6 @@
 //
 
 #import "NSApplication+LoginItems.h"
-
-@implementation NSApplication (KainjowLoginItems)
 
 static BOOL isAppInstalled(CFStringRef appName, LSSharedFileListRef list, LSSharedFileListItemRef *outItem)
 {
@@ -67,16 +65,30 @@ static BOOL isAppInstalled(CFStringRef appName, LSSharedFileListRef list, LSShar
     return ret;
 }
 
+static CFStringRef appName(void)
+{
+    NSString *name = [[NSProcessInfo processInfo] processName];
+#if __has_feature(objc_arc)
+    return (__bridge CFStringRef)name;
+#else
+    return (CFStringRef)name;
+#endif
+}
+
+@implementation NSApplication (KainjowLoginItems)
+
 - (void)addToLoginItems
 {
     LSSharedFileListRef list = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
     if (list != NULL) {
-        CFStringRef appName = (CFStringRef)[[NSProcessInfo processInfo] processName];
-        if (isAppInstalled(appName, list, NULL) == NO) {
-            CFURLRef url = (CFURLRef)[[NSBundle mainBundle] bundleURL];
-            LSSharedFileListItemRef newItem = LSSharedFileListInsertItemURL(list, kLSSharedFileListItemLast, appName, NULL, url, NULL, NULL);
-            if (newItem != NULL) {
-                CFRelease(newItem);
+        if (isAppInstalled(appName(), list, NULL) == NO) {
+            CFURLRef url = CFBundleCopyBundleURL(CFBundleGetMainBundle());
+            if (url != NULL) {
+                LSSharedFileListItemRef newItem = LSSharedFileListInsertItemURL(list, kLSSharedFileListItemLast, appName(), NULL, url, NULL, NULL);
+                if (newItem != NULL) {
+                    CFRelease(newItem);
+                }
+                CFRelease(url);
             }
         }
         CFRelease(list);
@@ -87,9 +99,8 @@ static BOOL isAppInstalled(CFStringRef appName, LSSharedFileListRef list, LSShar
 {
     LSSharedFileListRef list = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
     if (list != NULL) {
-        CFStringRef appName = (CFStringRef)[[NSProcessInfo processInfo] processName];
         LSSharedFileListItemRef item = NULL;
-        if ((isAppInstalled(appName, list, &item) == YES) && (item != NULL)) {
+        if ((isAppInstalled(appName(), list, &item) == YES) && (item != NULL)) {
             (void)LSSharedFileListItemRemove(list, item);
             CFRelease(item);
         }
@@ -102,8 +113,7 @@ static BOOL isAppInstalled(CFStringRef appName, LSSharedFileListRef list, LSShar
     BOOL ret = NO;
     LSSharedFileListRef list = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
     if (list != NULL) {
-        CFStringRef appName = (CFStringRef)[[NSProcessInfo processInfo] processName];
-        ret = isAppInstalled(appName, list, NULL);
+        ret = isAppInstalled(appName(), list, NULL);
         CFRelease(list);
     }
     return ret;
