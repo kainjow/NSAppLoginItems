@@ -38,7 +38,10 @@ static BOOL isAppInstalled(CFStringRef appName, LSSharedFileListRef list, LSShar
             if (CFStringCompare(displayName, appName, kCFCompareCaseInsensitive) == kCFCompareEqualTo) {
                 // We have a match based on name. If the existing login item's file is missing, remove it.
                 CFURLRef itemURL = NULL;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
                 OSStatus status = LSSharedFileListItemResolve(listItem, kLSSharedFileListNoUserInteraction, &itemURL, NULL);
+#pragma clang diagnostic pop
                 if (itemURL != NULL) {
                     // Even though we don't use the URL, apparently LSSharedFileListItemResolve() requires it or the
                     // FSRef in order to return the appropriate status (-43). Otherwise it seems to always just return 0.
